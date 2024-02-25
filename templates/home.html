@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>.pet-card {
+        display: inline-block;
+        width: 200px; /* Adjust as needed */
+        margin-right: 20px; /* Adjust spacing between pet cards */
+        margin-bottom: 20px; /* Adjust vertical spacing between pet cards */
+    }
+    
+    .pet-image {
+        width: 100px; /* Adjust image width */
+        height: auto; /* Maintain aspect ratio */
+        display: block;
+        margin: 0 auto 10px auto;
+    }
+    
+    .pet-link {
+        display: block; /* Allow anchor tag to occupy full width of pet card */
+        text-decoration: none;
+        color: green; /* Adjust link color as needed */
+    }
+    
+    .availability {
+        margin-top: 5px; /* Adjust spacing between pet name and availability */
+        font-weight: bold;
+    }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    {% for msg in get_flashed_messages() %}
+    <p>{{msg}}</p>
+    {% endfor %}
+<div class="row">
+    {% for pet in pets %}
+    <div class="pet-card">
+            <img class="pet-image" src="{{ pet.image_url() }}">
+            <div class="availability">
+            <a class="pet-link" href="/pet/{{pet.id}}/edit">{{ pet.name }} </a>
+            
+                {%if pet.available%}
+                <b>avaliable</b>
+                {%else%}
+                <span> not avaliable</span>
+                {%endif%}
+      
+    </div>
+            </div>  
+     {% endfor %}
+</div>
+  
+
+    <ul>
+        <li><a href="/add">Add new pet</a></li>
+    </ul>
+
+</body>
+</html>

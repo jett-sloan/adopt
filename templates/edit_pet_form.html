@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Pet</title>
+</head>
+<body>
+    <h1>Edit Pet</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {% for field in form if field.widget.input_type != 'hidden' %}
+        <p>
+            {{ field.label }}
+            {{ field }}
+            {% for err in field.errors %}
+            <span style="color: red;">{{ err }}</span>
+            {% endfor %}
+        </p>
+        {% endfor %}
+        <button type="submit">Save</button>
+    </form>
+    
+</body>
+</html>
